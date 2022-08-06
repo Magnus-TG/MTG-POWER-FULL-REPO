@@ -150,7 +150,7 @@ async def start(client, message):
             f_msg_id, l_msg_id, f_chat_id = decoded.split("_", 2)
             protect = "/pbatch" if PROTECT_CONTENT else "batch"
         diff = int(l_msg_id) - int(f_msg_id)
-        async for msg in client.iter_messages(int(f_chat_id), int(l_msg_id), int(f_msg_id)):
+        async for msg in client.send_message(channel, messages):
             if msg.media:
                 media = getattr(msg, msg.media)
                 if BATCH_FILE_CAPTION:
